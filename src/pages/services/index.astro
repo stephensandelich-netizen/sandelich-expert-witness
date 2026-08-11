@@ -20,7 +20,11 @@ const currLocale = getLocaleFromUrl(Astro.url);
 const siteData = getTranslatedData("siteData", currLocale);
 ---
 
-<BaseLayout title={siteData.title} description={siteData.description} navStyle="default">
+<BaseLayout
+  title={`Expert Witness Services | ${siteData.name}`}
+  description="Case reviews, deposition and trial testimony, and plaintiff or defense consulting in pediatric emergency medicine, adolescent substance use, and pediatric trauma."
+  navStyle="default"
+>
   <HeroSwoosh />
   <ServicesIntro />
   <ServicesCards />

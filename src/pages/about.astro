@@ -12,7 +12,11 @@ const currLocale = getLocaleFromUrl(Astro.url);
 const siteData = getTranslatedData("siteData", currLocale);
 ---
 
-<BaseLayout title={siteData.title} description={siteData.description} navStyle="default">
+<BaseLayout
+  title={`About | ${siteData.name}`}
+  description="Dr. Stephen Sandelich, MD is a board-certified Pediatric Emergency Medicine physician and Assistant Professor at Penn State Health, with over a decade of clinical and legal consulting experience."
+  navStyle="default"
+>
   <HeroSwoosh />
   <AboutSideImage />
   <AboutSideCards />
