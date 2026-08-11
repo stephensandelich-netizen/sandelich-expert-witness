@@ -10,13 +10,21 @@ const siteData = getTranslatedData("siteData", currLocale);
 
 // Legal-relevant subset of the full publication record. The complete list
 // lives on sandelichlab.org and Google Scholar, linked below.
-const publications = [
+//
+// Links: a direct DOI where the CV gives one or the journal has a fully
+// predictable DOI scheme (Cureus); a PubMed search for the exact title
+// otherwise. Real, working links only — nothing guessed.
+function pubmedSearch(title: string) {
+  return `https://pubmed.ncbi.nlm.nih.gov/?term=${encodeURIComponent(title)}`;
+}
+
+const rawPublications = [
   { title: "Vital signs among emergency department trauma patients in the setting of alcohol or drug use", journal: "Injury", year: 2024 },
   { title: "A Comparison of Pediatric Prehospital Opioid Encounters and Social Vulnerability", journal: "Prehospital Emergency Care", year: 2025 },
   { title: "Acute opioid overdose in pediatric patients", journal: "J Am Coll Emerg Physicians Open", year: 2024 },
   { title: "Emergency department management of opioid use disorder in pediatric patients", journal: "J Am Coll Emerg Physicians Open", year: 2024 },
   { title: "Association Between Substance Use and Trauma Outcomes in Adolescents", journal: "Western Journal of Emergency Medicine", year: 2026 },
-  { title: "A National Survey of Pediatric Emergency Medicine Clinicians' Comfort Level, Beliefs, and Experiences With Initiating Buprenorphine in the Emergency Department", journal: "Cureus", year: 2024 },
+  { title: "A National Survey of Pediatric Emergency Medicine Clinicians' Comfort Level, Beliefs, and Experiences With Initiating Buprenorphine in the Emergency Department", journal: "Cureus", year: 2024, url: "https://doi.org/10.7759/cureus.69331" },
   { title: "Rapid progression of orbital abscess requiring lateral canthotomy in a pediatric patient", journal: "American Journal of Emergency Medicine", year: 2024 },
   { title: "Septic Shock Caused by a Perforated Appendix", journal: "Critical Decisions in Emergency Medicine", year: 2024 },
   { title: "Nonaccidental Trauma", journal: "Trauma Reports", year: 2023 },
@@ -24,6 +32,11 @@ const publications = [
   { title: "Substance Use Disorder", journal: "Emergency Medicine Clinics of North America", year: 2024 },
   { title: "Community-acquired Pneumonia in Children", journal: "Emergency Medicine Clinics of North America", year: 2025 },
 ];
+
+const publications = rawPublications.map((pub) => ({
+  ...pub,
+  url: pub.url ?? pubmedSearch(pub.title),
+}));
 ---
 
 <BaseLayout
@@ -54,7 +67,11 @@ const publications = [
           <article class="grid gap-2 py-5 md:grid-cols-[4rem_minmax(0,1fr)] md:items-baseline md:gap-6">
             <p class="text-muted-foreground text-sm font-semibold tabular-nums">{pub.year}</p>
             <div>
-              <h3 class="font-heading text-lg font-semibold">{pub.title}</h3>
+              <h3 class="font-heading text-lg font-semibold">
+                <a href={pub.url} target="_blank" rel="noreferrer" class="hover:text-primary underline hover:no-underline">
+                  {pub.title}
+                </a>
+              </h3>
               <p class="text-muted-foreground mt-1">{pub.journal}</p>
             </div>
           </article>
