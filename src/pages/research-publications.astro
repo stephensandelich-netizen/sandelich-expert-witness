@@ -19,18 +19,18 @@ function pubmedSearch(title: string) {
 }
 
 const rawPublications = [
-  { title: "Vital signs among emergency department trauma patients in the setting of alcohol or drug use", journal: "Injury", year: 2024 },
-  { title: "A Comparison of Pediatric Prehospital Opioid Encounters and Social Vulnerability", journal: "Prehospital Emergency Care", year: 2025 },
-  { title: "Acute opioid overdose in pediatric patients", journal: "J Am Coll Emerg Physicians Open", year: 2024 },
-  { title: "Emergency department management of opioid use disorder in pediatric patients", journal: "J Am Coll Emerg Physicians Open", year: 2024 },
-  { title: "Association Between Substance Use and Trauma Outcomes in Adolescents", journal: "Western Journal of Emergency Medicine", year: 2026 },
+  { title: "Vital signs among emergency department trauma patients in the setting of alcohol or drug use", journal: "Injury", year: 2024, url: "https://doi.org/10.1016/j.injury.2023.111024" },
+  { title: "A Comparison of Pediatric Prehospital Opioid Encounters and Social Vulnerability", journal: "Prehospital Emergency Care", year: 2025, url: "https://doi.org/10.1080/10903127.2024.2424335" },
+  { title: "Acute opioid overdose in pediatric patients", journal: "J Am Coll Emerg Physicians Open", year: 2024, url: "https://doi.org/10.1002/emp2.13134" },
+  { title: "Emergency department management of opioid use disorder in pediatric patients", journal: "J Am Coll Emerg Physicians Open", year: 2024, url: "https://doi.org/10.1002/emp2.13265" },
+  { title: "Association Between Substance Use and Trauma Outcomes in Adolescents", journal: "Western Journal of Emergency Medicine", year: 2026, url: "https://doi.org/10.5811/westjem.50673" },
   { title: "A National Survey of Pediatric Emergency Medicine Clinicians' Comfort Level, Beliefs, and Experiences With Initiating Buprenorphine in the Emergency Department", journal: "Cureus", year: 2024, url: "https://doi.org/10.7759/cureus.69331" },
-  { title: "Rapid progression of orbital abscess requiring lateral canthotomy in a pediatric patient", journal: "American Journal of Emergency Medicine", year: 2024 },
+  { title: "Rapid progression of orbital abscess requiring lateral canthotomy in a pediatric patient", journal: "American Journal of Emergency Medicine", year: 2024, url: "https://doi.org/10.1016/j.ajem.2024.04.028" },
   { title: "Septic Shock Caused by a Perforated Appendix", journal: "Critical Decisions in Emergency Medicine", year: 2024 },
   { title: "Nonaccidental Trauma", journal: "Trauma Reports", year: 2023 },
   { title: "Pediatric Chest Trauma", journal: "Trauma Reports", year: 2023 },
-  { title: "Substance Use Disorder", journal: "Emergency Medicine Clinics of North America", year: 2024 },
-  { title: "Community-acquired Pneumonia in Children", journal: "Emergency Medicine Clinics of North America", year: 2025 },
+  { title: "Substance Use Disorder", journal: "Emergency Medicine Clinics of North America", year: 2024, url: "https://doi.org/10.1016/j.emc.2023.06.023" },
+  { title: "Community-acquired Pneumonia in Children", journal: "Emergency Medicine Clinics of North America", year: 2025, url: "https://doi.org/10.1016/j.emc.2025.06.008" },
 ];
 
 const publications = rawPublications.map((pub) => ({
