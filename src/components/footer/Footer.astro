@@ -1,6 +1,5 @@
 ---
 import SiteLogo from "@/components/site-logo/SiteLogo.astro";
-import SocialIcon from "@/components/social-icon/SocialIcon.astro";
 import { getLocaleFromUrl } from "@/js/localeUtils";
 import { getTranslatedData } from "@/js/translationUtils";
 
@@ -16,33 +15,13 @@ const today = new Date();
  */
 const footerColumns = [
   {
-    title: "Products",
+    title: "Site",
     links: [
-      { label: "About", href: "#" },
-      { label: "Leadership", href: "#" },
-      { label: "Press/News", href: "#" },
-      { label: "Careers/Team", href: "#" },
-      { label: "Contact Us", href: "#" },
-    ],
-  },
-  {
-    title: "Important links",
-    links: [
-      { label: "About", href: "#" },
-      { label: "Leadership", href: "#" },
-      { label: "Press/News", href: "#" },
-      { label: "Careers/Team", href: "#" },
-      { label: "Contact Us", href: "#" },
-    ],
-  },
-  {
-    title: "Company",
-    links: [
-      { label: "About", href: "#" },
-      { label: "Leadership", href: "#" },
-      { label: "Press/News", href: "#" },
-      { label: "Careers/Team", href: "#" },
-      { label: "Contact Us", href: "#" },
+      { label: "About Me", href: "/about" },
+      { label: "Expert Witness Services", href: "/services" },
+      { label: "Testimonials", href: "/testimonials" },
+      { label: "Research & Publications", href: "/research-publications" },
+      { label: "Contact", href: "/contact" },
     ],
   },
 ];
@@ -58,26 +37,18 @@ const footerColumns = [
           <div class="lg:max-w-sm">
             <SiteLogo />
             <p class="text-muted-foreground mt-4 leading-relaxed font-medium md:max-w-xs">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lectus interdum facilisis
-              odio scelerisque vel neque.
+              Objective, evidence-based expert testimony in pediatric emergency medicine, serving
+              attorneys nationwide.
             </p>
-            <div class="mt-10 flex flex-wrap gap-3 lg:mt-16">
-              <SocialIcon
-                href="https://twitter.com/BowTiedWebReapr"
-                icon="tabler/brand-x"
-                social="twitter (x)"
-              />
-              <SocialIcon
-                href="https://www.threads.com/@bowtiedwebreaper"
-                icon="tabler/brand-threads"
-                social="threads"
-              />
-              <SocialIcon
-                href="https://www.threads.com/@bowtiedwebreaper"
-                icon="tabler/brand-instagram"
-                social="instagram"
-              />
-            </div>
+            <p class="text-muted-foreground mt-6 text-sm">
+              <a class="hover:text-primary underline hover:no-underline" href="tel:717-461-3863"
+                >717-461-3863</a
+              >
+              &middot;
+              <a class="hover:text-primary underline hover:no-underline" href="mailto:Sandelich.MD@gmail.com"
+                >Sandelich.MD@gmail.com</a
+              >
+            </p>
           </div>
         </div>
         {
