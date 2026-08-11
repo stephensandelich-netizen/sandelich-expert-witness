@@ -1,0 +1,80 @@
+---
+import doctorImage from "@images/card_bg-min.png"; // Use a doctor image for the left side
+import { Image } from "astro:assets";
+import { Icon } from "astro-icon/components";
+
+import Divider from "@/components/divider/Divider.astro";
+import { getLocaleFromUrl } from "@/js/localeUtils";
+
+const currLocale = getLocaleFromUrl(Astro.url);
+
+const aboutCardsData = [
+  {
+    title: "Objectivity & Integrity",
+    description:
+      "Every case review is grounded in the medical evidence, not the outcome either side wants. Opinions are formed independently and stated plainly.",
+    icon: "tabler/circle-check",
+  },
+  {
+    title: "Meticulous Attention to Detail",
+    description:
+      "Thorough review of medical records, imaging, and documentation, with clear standards-of-care analysis you can rely on for deposition or trial.",
+    icon: "tabler/list-check",
+  },
+  {
+    title: "Clear Communication for Legal Audiences",
+    description:
+      "Complex pediatric emergency medicine explained in plain language a jury can follow — available to both plaintiff and defense.",
+    icon: "tabler/quote",
+  },
+];
+---
+
+<section
+  id="testimonials-side"
+  class="from-primary-500/20 to-background my-12 rounded-b-2xl bg-gradient-to-t py-12 md:rounded-b-3xl"
+>
+  <div class="site-container mt-12 grid gap-8 lg:grid-cols-2 lg:gap-20">
+    <div
+      class="bg-primary/10 relative flex aspect-7/8 items-center justify-center rounded-2xl p-6 pt-20 md:px-10"
+      data-mos="fade-right"
+    >
+      <div class="bg-primary-600 absolute inset-0 h-full w-full overflow-hidden rounded-xl">
+        <Image
+          src={doctorImage}
+          alt="Testimonial background"
+          width={500}
+          densities={[1.5, 2]}
+          class="h-full w-full object-cover mix-blend-overlay"
+        />
+      </div>
+
+      <div class="text-muted relative mb-auto flex flex-col items-center text-center">
+        <div>
+          <h2 class="h1 text-pretty text-white">What Sets This Practice Apart</h2>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex flex-col justify-between gap-8 md:py-10" data-mos="fade-left">
+      {
+        aboutCardsData.map((card, idx) => (
+          <>
+            {idx > 0 && <Divider />}
+            <div class="">
+              <div class="flex items-center gap-4">
+                <div class="shrink-0">
+                  <Icon name={card.icon} class="text-accent-500/80 size-14" />
+                </div>
+                <div>
+                  <h3 class="text-primary h2">{card.title}</h3>
+                </div>
+              </div>
+              <p class="text-muted-foreground mt-4 md:text-lg">{card.description}</p>
+            </div>
+          </>
+        ))
+      }
+    </div>
+  </div>
+</section>

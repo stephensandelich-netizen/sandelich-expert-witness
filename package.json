@@ -1,0 +1,65 @@
+{
+  "name": "space-coast",
+  "type": "module",
+  "version": "4.0.0",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "config-i18n": "node ./scripts/config-i18n.js",
+    "remove-keystatic": "node ./scripts/remove-keystatic.js",
+    "format": "eslint . --fix && prettier -w \"**/*\" --ignore-unknown --cache",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "@astrojs/mdx": "^7.0.2",
+    "@astrojs/markdown-remark": "^7.2.1",
+    "@astrojs/netlify": "^8.1.1",
+    "@astrojs/react": "^6.0.1",
+    "@astrojs/rss": "4.0.19",
+    "@astrojs/sitemap": "3.7.3",
+    "@fontsource-variable/montserrat": "5.2.8",
+    "@fontsource-variable/nunito": "5.2.7",
+    "@keystatic/astro": "5.1.0",
+    "@keystatic/core": "0.5.50",
+    "@tabler/icons": "3.35.0",
+    "@tailwindcss/forms": "0.5.11",
+    "@tailwindcss/vite": "4.3.2",
+    "@types/react": "19.2.7",
+    "@types/react-dom": "19.2.3",
+    "astro": "^7.0.6",
+    "astro-icon": "1.1.5",
+    "astro-seo": "0.8.4",
+    "motion-on-scroll": "^1.0.0",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
+    "swiper": "12.0.3",
+    "tailwind-merge": "3.4.0",
+    "tailwind-variants": "3.2.2",
+    "tailwindcss": "4.3.2",
+    "tw-animate-css": "1.4.0"
+  },
+  "devDependencies": {
+    "@astrojs/check": "0.9.9",
+    "@eslint/js": "^9.25.1",
+    "eslint": "^9.25.1",
+    "eslint-plugin-astro": "^1.3.1",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-prettier": "^5.2.6",
+    "eslint-plugin-simple-import-sort": "^12.1.1",
+    "globals": "^16.0.0",
+    "prettier-plugin-astro": "^0.14.1",
+    "prettier-plugin-tailwindcss": "^0.7.1",
+    "typescript": "5.9.3",
+    "typescript-eslint": "^8.31.1"
+  },
+  "pnpm": {
+    "peerDependencyRules": {
+      "allowedVersions": {
+        "@keystatic/astro>astro": ">=6 <8"
+      }
+    }
+  }
+}

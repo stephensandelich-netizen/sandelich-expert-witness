@@ -1,0 +1,52 @@
+---
+import building from "@images/building-2-min.png";
+import { Image } from "astro:assets";
+
+import Divider from "@/components/divider/Divider.astro";
+import { getLocaleFromUrl } from "@/js/localeUtils";
+import { getLocalizedRoute, getTranslatedData, useTranslations } from "@/js/translationUtils";
+
+const amenities = [
+  "Board certified in Pediatrics and Pediatric Emergency Medicine",
+  "Over a decade of clinical, academic, and legal consulting experience",
+  "Available to both plaintiff and defense",
+  "Case reviews, depositions, and trial testimony, nationwide",
+  "Direct, responsive communication — replies within 48 hours",
+];
+
+const currLocale = getLocaleFromUrl(Astro.url);
+const t = useTranslations(currLocale);
+---
+
+<section class="py-16 md:py-24">
+  <div class="site-container grid gap-8 md:grid-cols-2 md:gap-16">
+    <div class="aspect-square overflow-clip rounded-3xl">
+      <Image
+        src={building}
+        alt="Medical office building"
+        width={1001}
+        densities={[1.5, 2]}
+        class="h-full w-full object-cover"
+      />
+    </div>
+
+    <div class="">
+      <h2 class="text-primary h1">Why Attorneys Choose Dr. Sandelich</h2>
+      <p class="mt-3 max-w-lg text-pretty md:text-lg">
+        A practicing pediatric emergency medicine physician who brings current clinical experience,
+        not just a chart review, to every case.
+      </p>
+
+      <ul class="mt-8 space-y-3">
+        {
+          amenities.map((item) => (
+            <li class="flex items-start">
+              <span class="bg-primary mt-1.5 mr-3 inline-block size-3 shrink-0 rounded-full md:mt-2" />
+              <span class="md:text-lg">{item}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</section>

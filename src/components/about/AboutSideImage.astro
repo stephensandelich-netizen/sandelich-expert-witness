@@ -1,0 +1,72 @@
+---
+import building from "@images/building-2-min.png";
+import { Image } from "astro:assets";
+
+import Divider from "@/components/divider/Divider.astro";
+import { getLocaleFromUrl } from "@/js/localeUtils";
+import { getLocalizedRoute, getTranslatedData, useTranslations } from "@/js/translationUtils";
+const currLocale = getLocaleFromUrl(Astro.url);
+const t = useTranslations(currLocale);
+---
+
+<section class="py-16 md:py-24">
+  <div class="site-container grid gap-8 md:grid-cols-2 md:gap-16">
+    <div class="" id="about-side-image-trigger">
+      <h2
+        data-mos="fade-up"
+        class="text-primary leading-tighter font-heading text-4xl font-extrabold tracking-wide md:text-5xl xl:text-6xl"
+      >
+        About Dr. Sandelich
+      </h2>
+
+      <div class="mt-6">
+        <p
+          class="leading-relaxed md:text-lg"
+          data-mos="fade-up"
+          data-mos-anchor="#about-side-image-trigger"
+          data-mos-delay=".2"
+        >
+          Dr. Stephen Sandelich is a board-certified Pediatric Emergency Medicine physician and
+          Assistant Professor of Emergency Medicine and Pediatrics at Penn State Health Milton S.
+          Hershey Medical Center. He has over a decade of clinical, academic, and legal consulting
+          experience.
+        </p>
+
+        <p
+          class="mt-6 leading-relaxed md:text-lg"
+          data-mos="fade-up"
+          data-mos-anchor="#about-side-image-trigger"
+          data-mos-delay=".4"
+        >
+          His clinical and research focus includes adolescent substance use disorders, opioid use
+          disorder, mental health crises, and pediatric trauma — the areas where he is most often
+          asked to consult. He is Opioid Use Disorder Research Lead with the Pediatric Emergency
+          Care Applied Research Network, and Section Editor for Pediatrics at the Western Journal
+          of Emergency Medicine.
+        </p>
+
+        <p
+          class="mt-6 leading-relaxed md:text-lg"
+          data-mos="fade-up"
+          data-mos-anchor="#about-side-image-trigger"
+          data-mos-delay=".6"
+        >
+          Education: Doctor of Medicine, Drexel University College of Medicine. Residency in
+          Pediatrics, St. Christopher's Hospital for Children. Fellowship in Pediatric Emergency
+          Medicine, Nemours/AI duPont Hospital for Children. Board certified in Pediatrics and
+          Pediatric Emergency Medicine.
+        </p>
+      </div>
+    </div>
+
+    <div class="aspect-square overflow-clip rounded-3xl">
+      <Image
+        src={building}
+        alt="Penn State Health Milton S. Hershey Medical Center"
+        width={1001}
+        densities={[1.5, 2]}
+        class="h-full w-full object-cover"
+      />
+    </div>
+  </div>
+</section>

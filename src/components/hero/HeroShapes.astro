@@ -1,0 +1,76 @@
+---
+import doctorImage from "@images/hero/doctor_2-min.png";
+import backgroundImage from "@images/hero/hero_bg_3-min.png";
+import { Image } from "astro:assets";
+
+import Button from "@/components/button/Button.astro";
+import { getLocaleFromUrl } from "@/js/localeUtils";
+import { getLocalizedRoute, getTranslatedData, useTranslations } from "@/js/translationUtils";
+
+const currLocale = getLocaleFromUrl(Astro.url);
+const t = useTranslations(currLocale);
+---
+
+<section
+  class:list={[
+    "relative isolate flex w-full items-center overflow-hidden",
+    "mx-auto rounded-b-2xl shadow-md md:rounded-b-3xl",
+  ]}
+  aria-label="Hero section"
+>
+  <Image
+    src={backgroundImage}
+    alt="Blue healthcare background"
+    class="pointer-events-none absolute inset-0 z-0 h-full w-full object-cover"
+    aria-hidden="true"
+  />
+
+  <div
+    class="site-container relative flex h-full min-h-full grow flex-col items-center justify-between gap-8 md:flex-row"
+  >
+    <div id="hero-shapes-trigger" class="max-w-2xl flex-1 pt-30 md:py-44 lg:pb-50">
+      <h1
+        data-mos-anchor="#hero-shapes-trigger"
+        data-mos="fade-right"
+        class="text-primary leading-tighter font-heading mb-4 text-4xl font-extrabold md:text-5xl xl:text-6xl"
+      >
+        Objective, Evidence-Based Expert Testimony in{" "}
+        <span class="text-accent-400">Pediatric Emergency Medicine</span>
+      </h1>
+      <p
+        data-mos-anchor="#hero-shapes-trigger"
+        data-mos="fade-right"
+        data-mos-delay=".2"
+        class="text-muted-foreground mb-8 text-lg md:text-xl"
+      >
+        Dr. Stephen Sandelich, MD is a board-certified Pediatric Emergency Medicine physician with
+        experience in adolescent substance use, mental health emergencies, pediatric trauma, and
+        malpractice cases — serving attorneys nationwide.
+      </p>
+      <Button
+        type="button"
+        href={getLocalizedRoute(currLocale, `#contact`)}
+        variant="primary"
+        class="md:text-lg"
+        aria-label="Schedule a consultation"
+        data-mos-anchor="#hero-shapes-trigger"
+        data-mos="fade-right"
+        data-mos-delay=".4"
+      >
+        Schedule a Consultation
+      </Button>
+    </div>
+    <div
+      class="xs:h-[360px] mt-auto flex h-[300px] justify-end md:h-[500px] md:pt-20 lg:h-[600px] xl:h-[700px]"
+    >
+      <Image
+        src={doctorImage}
+        alt="Smiling healthcare professional with stethoscope"
+        class="m-0 h-full w-auto object-contain p-0 align-bottom"
+        width={700}
+        densities={[1.5, 2]}
+        loading="eager"
+      />
+    </div>
+  </div>
+</section>

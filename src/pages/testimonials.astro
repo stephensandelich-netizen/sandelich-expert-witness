@@ -1,0 +1,15 @@
+---
+import TestimonialsSideImage from "@/components/testimonials/TestimonialsSideImage.astro";
+import Contact from "@/components/contact/Contact.astro";
+import { getLocaleFromUrl } from "@/js/localeUtils";
+import { getTranslatedData } from "@/js/translationUtils";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+const currLocale = getLocaleFromUrl(Astro.url);
+const siteData = getTranslatedData("siteData", currLocale);
+---
+
+<BaseLayout title={`Testimonials | ${siteData.name}`} description="What attorneys say about working with Dr. Sandelich." navStyle="default">
+  <TestimonialsSideImage />
+  <Contact />
+</BaseLayout>
