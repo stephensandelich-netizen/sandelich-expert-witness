@@ -86,24 +86,62 @@ const t = useTranslations(currLocale);
   <div>
     <Button variant="primary" type="submit" class="w-full py-3 text-lg">Send Message</Button>
   </div>
+  <p id="contact-form-status" role="status" aria-live="polite" class="text-center text-sm"></p>
 </form>
 
 <script>
   function handleFormSubmit() {
     const form = document.querySelector("#contact-form") as HTMLFormElement;
     if (form) {
-      form.addEventListener("submit", (e) => {
+      form.addEventListener("submit", async (e) => {
         e.preventDefault();
         const formData = new FormData(form);
-        const formValues = Object.fromEntries(formData.entries());
+        const formValues = {
+          ...Object.fromEntries(formData.entries()),
+          consent: formData.has("consent"),
+        };
 
-        // demo form data logging
-        console.log("Form submission values:", formValues);
+        const submitBtn = form.querySelector('button[type="submit"]') as HTMLButtonElement | null;
+        const statusEl = form.querySelector("#contact-form-status") as HTMLElement | null;
 
-        // You can add additional logic here like:
-        // - Form validation
-        // - API submission
-        // - Success/error handling
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.textContent = "Sending...";
+        }
+        if (statusEl) {
+          statusEl.textContent = "";
+          statusEl.className = "text-center text-sm";
+        }
+
+        try {
+          const res = await fetch("/api/contact", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(formValues),
+          });
+          const result = (await res.json().catch(() => ({}))) as { error?: string };
+          if (!res.ok) {
+            throw new Error(result.error || "Something went wrong.");
+          }
+          form.reset();
+          if (statusEl) {
+            statusEl.textContent = "Thank you -- your message has been sent. We respond within 48 hours.";
+            statusEl.className = "text-success text-center text-sm";
+          }
+        } catch (err) {
+          if (statusEl) {
+            statusEl.textContent =
+              err instanceof Error && err.message
+                ? err.message
+                : "Something went wrong sending your message. Please email Sandelich.MD@gmail.com directly.";
+            statusEl.className = "text-error text-center text-sm";
+          }
+        } finally {
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = "Send Message";
+          }
+        }
       });
     }
   }
