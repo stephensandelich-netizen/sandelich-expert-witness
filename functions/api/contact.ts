@@ -14,7 +14,10 @@ interface Context {
   env: Env;
 }
 
-const DESTINATION_EMAIL = "Sandelich.MD@gmail.com";
+// Lowercase to exactly match the Resend account's registered address -- the
+// sandbox sender (onboarding@resend.dev) only delivers to that address, and
+// Resend's check on this is case-sensitive even though mail delivery isn't.
+const DESTINATION_EMAIL = "sandelich.md@gmail.com";
 
 function json(body: unknown, status: number): Response {
   return new Response(JSON.stringify(body), {
@@ -66,7 +69,6 @@ export const onRequestPost = async ({ request, env }: Context): Promise<Response
   // that can crash the Function before the outer try/catch runs.
   const apiKey = (env.RESEND_API_KEY ?? "").trim();
   if (!apiKey) {
-    console.error("RESEND_API_KEY is not set in this environment");
     return json({ error: "Email is not configured yet. Please email directly." }, 500);
   }
 
@@ -88,7 +90,6 @@ export const onRequestPost = async ({ request, env }: Context): Promise<Response
 
     if (!resendResponse.ok) {
       const detail = await resendResponse.text();
-      console.error("Resend send failed:", resendResponse.status, detail);
       return json(
         { error: "Could not send your message right now. Please email directly.", detail },
         502,
@@ -97,7 +98,6 @@ export const onRequestPost = async ({ request, env }: Context): Promise<Response
 
     return json({ ok: true }, 200);
   } catch (err) {
-    console.error("Unexpected error sending via Resend:", err);
     return json(
       { error: "Unexpected server error. Please email directly.", detail: String(err) },
       500,
