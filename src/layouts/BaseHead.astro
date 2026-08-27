@@ -33,6 +33,17 @@ import NunitoVariable from "@fontsource-variable/nunito/files/nunito-latin-wght-
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width" initial-scale="1.0" />
 
+<!-- Google tag (gtag.js) -->
+<script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-JQCFRK728D"></script>
+<script is:inline>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() {
+    dataLayer.push(arguments);
+  }
+  gtag("js", new Date());
+  gtag("config", "G-JQCFRK728D");
+</script>
+
 <!-- local font preload for better performance -->
 <link rel="preload" href={MontserratVariable} as="font" type="font/woff2" crossorigin="anonymous" />
 <link rel="preload" href={NunitoVariable} as="font" type="font/woff2" crossorigin="anonymous" />
