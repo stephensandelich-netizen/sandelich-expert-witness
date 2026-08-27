@@ -61,7 +61,11 @@ export const onRequestPost = async ({ request, env }: Context): Promise<Response
     message,
   ].join("\n");
 
-  if (!env.RESEND_API_KEY) {
+  // .trim() guards against a stray newline/space from copy-pasting the key
+  // into Cloudflare's dashboard -- an invalid header value throws in a way
+  // that can crash the Function before the outer try/catch runs.
+  const apiKey = (env.RESEND_API_KEY ?? "").trim();
+  if (!apiKey) {
     console.error("RESEND_API_KEY is not set in this environment");
     return json({ error: "Email is not configured yet. Please email directly." }, 500);
   }
@@ -70,7 +74,7 @@ export const onRequestPost = async ({ request, env }: Context): Promise<Response
     const resendResponse = await fetch("https://api.resend.com/emails", {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${env.RESEND_API_KEY}`,
+        Authorization: `Bearer ${apiKey}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
