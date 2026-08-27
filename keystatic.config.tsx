@@ -20,9 +20,9 @@ export default config({
   // cloud deployment is free to sign up (up to 3 users per team)
   // docs: https://keystatic.com/docs/cloud
   // create a Keystatic Cloud account here: https://keystatic.cloud/
-  cloud: { project: "cosmic-themes/space-coast" },
+  cloud: { project: "sandelich1/expert-witness" },
   ui: {
-    brand: { name: "Cosmic Themes" },
+    brand: { name: "Sandelich Expert Witness" },
   },
   collections: {
     blogEN: Collections.Blog("en"),
