@@ -61,25 +61,42 @@ export const onRequestPost = async ({ request, env }: Context): Promise<Response
     message,
   ].join("\n");
 
-  const resendResponse = await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${env.RESEND_API_KEY}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      from: "Sandelich Expert Witness Site <onboarding@resend.dev>",
-      to: DESTINATION_EMAIL,
-      reply_to: email,
-      subject: `New case inquiry from ${fullName}`,
-      text: emailBody,
-    }),
-  });
-
-  if (!resendResponse.ok) {
-    console.error("Resend send failed:", resendResponse.status, await resendResponse.text());
-    return json({ error: "Could not send your message right now. Please email directly." }, 502);
+  if (!env.RESEND_API_KEY) {
+    console.error("RESEND_API_KEY is not set in this environment");
+    return json({ error: "Email is not configured yet. Please email directly." }, 500);
   }
 
-  return json({ ok: true }, 200);
+  try {
+    const resendResponse = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${env.RESEND_API_KEY}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        from: "Sandelich Expert Witness Site <onboarding@resend.dev>",
+        to: DESTINATION_EMAIL,
+        reply_to: email,
+        subject: `New case inquiry from ${fullName}`,
+        text: emailBody,
+      }),
+    });
+
+    if (!resendResponse.ok) {
+      const detail = await resendResponse.text();
+      console.error("Resend send failed:", resendResponse.status, detail);
+      return json(
+        { error: "Could not send your message right now. Please email directly.", detail },
+        502,
+      );
+    }
+
+    return json({ ok: true }, 200);
+  } catch (err) {
+    console.error("Unexpected error sending via Resend:", err);
+    return json(
+      { error: "Unexpected server error. Please email directly.", detail: String(err) },
+      500,
+    );
+  }
 };
