@@ -13,8 +13,8 @@ const siteData: SiteDataProps = {
   },
 
   defaultImage: {
-    src: "/images/theme.jpg",
-    alt: "Sandelich Expert Witness",
+    src: "/images/sandelich-headshot-og.jpg",
+    alt: "Dr. Stephen Sandelich, MD",
   },
 };
 
