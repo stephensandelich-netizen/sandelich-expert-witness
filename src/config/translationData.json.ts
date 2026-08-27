@@ -66,7 +66,6 @@ export const routeTranslations = {
     categoryKey: "categories",
     categoryKey2: "categories/*",
     categoryKey3: "categories",
-    blogKey: "blog",
     servicesKey: "services",
   },
 } as const;
@@ -82,9 +81,6 @@ export const routeTranslations = {
  * You can use the locale value to map the collection to a different route if desired
  */
 export const localizedCollections = {
-  blog: {
-    en: "blog",
-  },
   services: {
     en: "services",
   },
